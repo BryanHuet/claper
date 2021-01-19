@@ -15,6 +15,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:src="@drawable/claper"
+        android:contentDescription="@string/logo_description"
         android:id="@+id/image_view" />
 
     <Button
