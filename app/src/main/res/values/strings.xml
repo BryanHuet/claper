@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">appli</string>
     <string name="button_name"> Clap !</string>
+    <string name="more_info"> DESCRIPTION </string>
+    <string name="titleFound"> LE NOM DU FILM !</string>
+    <string name="descriptionFound"> description </string>
+    <string name="auteurFound"> auteur </string>
 </resources>

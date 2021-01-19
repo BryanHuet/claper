@@ -8,20 +8,27 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="10dp"
-    tools:context=".MainActivity">
+    tools:context=".SecondActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/titleFound"
+        android:textSize="100px"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@drawable/claper"
-        android:id="@+id/image_view" />
+        android:id="@+id/image_result" />
 
     <Button
-        android:id="@+id/bt_open"
+        android:id="@+id/btn_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/button_name" />
+        android:text="@string/more_info" />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -56,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
             // Get l'image Capturé
             Bitmap captureImage = (Bitmap) data.getExtras().get("data");
             // Set l'image capturé  dans l'ImageView (là il faudrait lancer l'IA et rediriger vers une nouvelle activité résultant de celle-ci)
-            imageView.setImageBitmap(captureImage);
+            //imageView.setImageBitmap(captureImage);
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("bmp_img", captureImage);
+            startActivity(intent);
         }
     }
 }
