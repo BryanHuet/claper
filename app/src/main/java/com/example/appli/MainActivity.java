@@ -56,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 100) {
             // Get l'image Capturé
             Bitmap captureImage = (Bitmap) data.getExtras().get("data");
-            // Set l'image capturé  dans l'ImageView (là il faudrait lancer l'IA et rediriger vers une nouvelle activité résultant de celle-ci)
-            //imageView.setImageBitmap(captureImage);
+            // Redirige vers la SecondActivity (là il faudrait lancer l'IA et rediriger vers une nouvelle activité avec des données en arguments résultants de celle-ci)
             Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("bmp_img", captureImage);
+            intent.putExtra("bmp_img", captureImage); // On met en argument l'image histoire d'avoir un exemple à afficher sur la 2ème activity
             startActivity(intent);
         }
     }
