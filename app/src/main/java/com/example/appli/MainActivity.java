@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Résultat de l'activité (on récupère l'image et la met dans l'ImageView).
+    // Résultat de l'activité (on récupère l'image et redirige vers la seconde Activity avec l'image en argument).
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
