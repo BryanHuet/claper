@@ -8,34 +8,35 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="10dp"
-    tools:context=".MainActivity">
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/titleFound"
+        android:textSize="100px"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        />
+
+    <Button
+        android:id="@+id/btn_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/more_info" />
 
     <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/logo_description"
-        android:src="@drawable/claper" />
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        android:id="@+id/image_result" />
 
     <Button
-        android:id="@+id/bt_open"
+        android:id="@+id/btn_historique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="@string/button_name" />
-
-    <Button
-        android:id="@+id/bt_import"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/button_import" />
-
-    <Button
-        android:id="@+id/bt_historique"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="@string/button_historique" />
 
 </LinearLayout>
