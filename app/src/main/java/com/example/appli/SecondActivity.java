@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class SecondActivity extends AppCompatActivity {
 
+    TextView title;
     ImageView imageView;
     Button btDescription;
 
@@ -24,6 +30,26 @@ public class SecondActivity extends AppCompatActivity {
         // Initialisation des attributs;
         imageView = findViewById(R.id.image_result);
         btDescription = findViewById(R.id.btn_description);
+        title = findViewById(R.id.titre);
+
+        if (getIntent().getStringExtra("intentName") != null && getIntent().getStringExtra("intentName").equals("Loader")) {
+            String id = getIntent().getStringExtra("filmId");
+            String titre = getIntent().getStringExtra("filmName");
+            String description = getIntent().getStringExtra("filmDescription");
+            String filmURL = getIntent().getStringExtra("filmURL");
+
+
+            try {
+                InputStream ims = getAssets().open(filmURL);
+                Drawable d = Drawable.createFromStream(ims, null);
+                imageView.setImageDrawable(d);
+                title.setText(titre);
+                ims.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         /* TODO Plus nécessaire de tester les affichages des images importer/prise, je vais faire la partie db et faker l'affichage d'images pré-sauvegarder.
         String previousActivity = "ThirdActivity";
         if (getParentActivityIntent() != null) {
@@ -47,8 +73,18 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ThirdActivity.class);
+                intent.putExtra("description", getIntent().getStringExtra("filmDescription"));
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+
     }
 }

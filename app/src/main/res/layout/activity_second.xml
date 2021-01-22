@@ -17,6 +17,7 @@
         android:textSize="100px"
         android:textColor="@color/black"
         android:textAlignment="center"
+        android:id="@+id/titre"
         />
 
     <Button
