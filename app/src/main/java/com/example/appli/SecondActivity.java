@@ -7,6 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +23,10 @@ public class SecondActivity extends AppCompatActivity {
     TextView title;
     ImageView imageView;
     Button btDescription;
+    String id;
+    String titre;
+    String description;
+    String filmURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +40,12 @@ public class SecondActivity extends AppCompatActivity {
         title = findViewById(R.id.titre);
 
         if (getIntent().getStringExtra("intentName") != null && getIntent().getStringExtra("intentName").equals("Loader")) {
-            String id = getIntent().getStringExtra("filmId");
-            String titre = getIntent().getStringExtra("filmName");
-            String description = getIntent().getStringExtra("filmDescription");
-            String filmURL = getIntent().getStringExtra("filmURL");
-
+            if (id == null || titre == null || description == null || filmURL == null) {
+                id = getIntent().getStringExtra("filmId");
+                titre = getIntent().getStringExtra("filmName");
+                description = getIntent().getStringExtra("filmDescription");
+                filmURL = getIntent().getStringExtra("filmURL");
+            }
 
             try {
                 InputStream ims = getAssets().open(filmURL);
@@ -66,25 +74,55 @@ public class SecondActivity extends AppCompatActivity {
             } else imageView.setImageBitmap(BitmapFactory.decodeFile(pathFile));
         }
          */
+        eventDescription();
+    }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("id", id);
+        savedInstanceState.putString("titre", titre);
+        savedInstanceState.putString("description", description);
+        savedInstanceState.putString("filmURL", filmURL);
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        id = savedInstanceState.getString("id");
+        titre = savedInstanceState.getString("titre");
+        description = savedInstanceState.getString("description");
+        filmURL = savedInstanceState.getString("filmURL");
+    }
+
+    public void eventDescription() {
         // Clicklistener sur le bouton qui redirige vers une 3ème activity.
         btDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ThirdActivity.class);
-                intent.putExtra("description", getIntent().getStringExtra("filmDescription"));
+                intent.putExtra("filmId", id);
+                intent.putExtra("filmName", titre);
+                intent.putExtra("filmDescription", description);
+                intent.putExtra("filmURL", filmURL);
                 startActivity(intent);
+                // onPause();
             }
         });
     }
 
     @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

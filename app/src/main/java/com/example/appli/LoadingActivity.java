@@ -45,6 +45,7 @@ public class LoadingActivity extends AppCompatActivity {
         }
         intent.putStringArrayListExtra("filmActeurs", newList);
         startActivity(intent);
+        finish();
     }
 
     // Parsing de JSON en objet grace à la librairie Gson. (dépendance si besoin sur le fichier build.gradle)
