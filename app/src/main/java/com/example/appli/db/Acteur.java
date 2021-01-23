@@ -5,13 +5,13 @@ public class Acteur {
     private String id;
     private String nom;
     private String description;
-    private String pathImage;
+    private String imageURL;
 
-    public Acteur(String id, String nom, String description, String pathImage) {
+    public Acteur(String id, String nom, String description, String imageURL) {
         id = id;
         nom = nom;
         description = description;
-        pathImage = pathImage;
+        imageURL = imageURL;
     }
 
     public String getId() { return id; }
@@ -24,7 +24,7 @@ public class Acteur {
         return description;
     }
 
-    public String getPathImage() {
-        return pathImage;
+    public String getImageURL() {
+        return imageURL;
     }
 }

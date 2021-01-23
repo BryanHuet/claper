@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".FourthActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e7e7e7"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="337dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

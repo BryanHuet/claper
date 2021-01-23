@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-//TODO Réfléchir sur la gestion et la sauvegarde des états entre les différentes redirection + la liaison des parents de l'activity 4 qui va être le fils de 1 et de 3.
 
-//TODO liste des films recherchés (save sur un fichier json chaque film trouvé)
+//TODO liste des films recherchés (lecture d'un fichier de sauvegarde (save d'une recherche de film à faire dans le LoadingActivity ou lors des result dans la MainActivity))
+// Attention à faire gaffe au bouton retour, car cette activité sera utilisé par la MainActivity et la SecondActivity.
 public class FourthActivity extends AppCompatActivity {
 
     @Override

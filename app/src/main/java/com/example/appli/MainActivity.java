@@ -54,17 +54,6 @@ public class MainActivity extends AppCompatActivity {
         // Listener sur le bouton historique.
         eventHistorique(btHistorique);
 
-
-        /* afficher une image depuis le dossier assets
-        try {
-            InputStream ims = getAssets().open("acteurs/bryan.jpg");
-            Drawable d = Drawable.createFromStream(ims, null);
-            imageView.setImageDrawable(d);
-            ims.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
     }
 
     // Résultat de l'activité (on récupère l'image et redirige vers la seconde Activity avec l'image en argument).
@@ -81,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pickImageFromGallery() {
-        //intent to pick image
+        //Intent pour prendre une image.
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_CODE);
     }
 
+    // Méthode qui permet de vérifier le résultat des requêtes de permission.
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -107,10 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public void takePictureAndRedirect(@Nullable Intent data) {
         // Get l'image Capturé
         Bitmap captureImage = (Bitmap) data.getExtras().get("data");
-        // Redirige vers la SecondActivity (là il faudrait lancer l'IA et rediriger vers une nouvelle activité avec des données en arguments résultants de celle-ci)
         Intent intent = new Intent(this, LoadingActivity.class);
-        // intent.putExtra("bmp_img", captureImage); // On met en argument l'image histoire d'avoir un exemple à afficher sur la 2ème activity
-        // intent.putExtra("fromActivity", "MainActivity");
         startActivity(intent);
     }
 
@@ -125,11 +112,8 @@ public class MainActivity extends AppCompatActivity {
         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
         String picturePath = cursor.getString(columnIndex);
         cursor.close();
-        // TROP GROS pour du Bundle (il faut convertir dans l'Activity via le filePath) -> Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
 
         Intent intent = new Intent(this, LoadingActivity.class);
-        //intent.putExtra("filePath", picturePath); // On met en argument l'image histoire d'avoir un exemple à afficher sur la 2ème activity
-        //intent.putExtra("fromActivity", "MainActivity");
         startActivity(intent);
     }
 
@@ -137,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Ouvre la Camera
+                // Ouvre la caméra
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 100);
             }
@@ -184,5 +168,4 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.CAMERA }, 100);
         }
     }
-
 }

@@ -56,10 +56,10 @@ public class LoadingActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Type listFilmType = new TypeToken<List<Film>>() { }.getType();
 
-        List<Film> users = gson.fromJson(jsonFileString, listFilmType);
+        List<Film> films = gson.fromJson(jsonFileString, listFilmType);
 
         Random r = new Random();
-        int randIndex = r.nextInt(users.size());
-        return users.get(randIndex);
+        int randIndex = r.nextInt(films.size());
+        return films.get(randIndex);
     }
 }

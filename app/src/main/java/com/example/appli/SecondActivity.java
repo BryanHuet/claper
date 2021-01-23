@@ -17,16 +17,20 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
 
-    TextView title;
-    ImageView imageView;
-    Button btDescription;
-    String id;
-    String titre;
-    String description;
-    String filmURL;
+    // Composants
+    private TextView title;
+    private ImageView imageView;
+    private Button btDescription;
+
+    private String id;
+    private String titre;
+    private String description;
+    private String filmURL;
+    private ArrayList<String> filmActeurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,41 +43,7 @@ public class SecondActivity extends AppCompatActivity {
         btDescription = findViewById(R.id.btn_description);
         title = findViewById(R.id.titre);
 
-        if (getIntent().getStringExtra("intentName") != null && getIntent().getStringExtra("intentName").equals("Loader")) {
-            if (id == null || titre == null || description == null || filmURL == null) {
-                id = getIntent().getStringExtra("filmId");
-                titre = getIntent().getStringExtra("filmName");
-                description = getIntent().getStringExtra("filmDescription");
-                filmURL = getIntent().getStringExtra("filmURL");
-            }
-
-            try {
-                InputStream ims = getAssets().open(filmURL);
-                Drawable d = Drawable.createFromStream(ims, null);
-                imageView.setImageDrawable(d);
-                title.setText(titre);
-                ims.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        /* TODO Plus nécessaire de tester les affichages des images importer/prise, je vais faire la partie db et faker l'affichage d'images pré-sauvegarder.
-        String previousActivity = "ThirdActivity";
-        if (getParentActivityIntent() != null) {
-            previousActivity = (String) getIntent().getExtras().getString("fromActivity");
-        }
-
-
-        if (previousActivity.equals("MainActivity")) {
-            // On récupère l'image passé en argument dans la redirection de la 1ère activity.
-            Bitmap passedImage = (Bitmap) getIntent().getParcelableExtra("bmp_img");
-            String pathFile = (String) getIntent().getExtras().getString("filePath");
-            if (passedImage != null) {
-                imageView.setImageBitmap(passedImage);
-            } else imageView.setImageBitmap(BitmapFactory.decodeFile(pathFile));
-        }
-         */
+        handleLoader();
         eventDescription();
     }
 
@@ -83,6 +53,7 @@ public class SecondActivity extends AppCompatActivity {
         savedInstanceState.putString("titre", titre);
         savedInstanceState.putString("description", description);
         savedInstanceState.putString("filmURL", filmURL);
+        savedInstanceState.putStringArrayList("filmActeurs", filmActeurs);
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -93,6 +64,7 @@ public class SecondActivity extends AppCompatActivity {
         titre = savedInstanceState.getString("titre");
         description = savedInstanceState.getString("description");
         filmURL = savedInstanceState.getString("filmURL");
+        filmActeurs = savedInstanceState.getStringArrayList("filmActeurs");
     }
 
     public void eventDescription() {
@@ -105,6 +77,7 @@ public class SecondActivity extends AppCompatActivity {
                 intent.putExtra("filmName", titre);
                 intent.putExtra("filmDescription", description);
                 intent.putExtra("filmURL", filmURL);
+                intent.putStringArrayListExtra("filmActeurs", filmActeurs);
                 startActivity(intent);
                 // onPause();
             }
@@ -125,4 +98,27 @@ public class SecondActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+
+    public void handleLoader() {
+        if (getIntent().getStringExtra("intentName") != null && getIntent().getStringExtra("intentName").equals("Loader")) {
+            if (id == null || titre == null || description == null || filmURL == null) {
+                id = getIntent().getStringExtra("filmId");
+                titre = getIntent().getStringExtra("filmName");
+                description = getIntent().getStringExtra("filmDescription");
+                filmURL = getIntent().getStringExtra("filmURL");
+                filmActeurs = getIntent().getStringArrayListExtra("filmActeurs");
+            }
+
+            try {
+                InputStream ims = getAssets().open(filmURL);
+                Drawable d = Drawable.createFromStream(ims, null);
+                imageView.setImageDrawable(d);
+                title.setText(titre);
+                ims.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

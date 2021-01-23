@@ -6,7 +6,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 
-// Classe utilitaire pour lire un JSON depuis le répertoire assets.
+// Classe utilitaire pour lire un JSON depuis le répertoire assets en passant par le Context d'une Activity.
 public class Utils {
 
     public static String getJsonFromAssets(Context context, String fileName) {
