@@ -3,8 +3,13 @@ package com.example.appli.db;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 // Classe utilitaire pour lire un JSON depuis le répertoire assets en passant par le Context d'une Activity.
 public class Utils {
@@ -27,4 +32,5 @@ public class Utils {
 
         return jsonString;
     }
+
 }

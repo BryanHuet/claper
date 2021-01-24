@@ -25,6 +25,7 @@ public class SecondActivity extends AppCompatActivity {
     private TextView title;
     private ImageView imageView;
     private Button btDescription;
+    private Button btHistorique;
 
     private String id;
     private String titre;
@@ -42,9 +43,11 @@ public class SecondActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image_result);
         btDescription = findViewById(R.id.btn_description);
         title = findViewById(R.id.titre);
+        btHistorique = findViewById(R.id.btn_historique);
 
         handleLoader();
         eventDescription();
+        eventHistorique();
     }
 
     @Override
@@ -119,6 +122,16 @@ public class SecondActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void eventHistorique() {
+        btHistorique.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), FourthActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
