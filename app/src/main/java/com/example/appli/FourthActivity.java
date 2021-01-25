@@ -107,7 +107,7 @@ public class FourthActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adaptor = new FilmAdapter();
         recyclerView.setAdapter(adaptor);
-        adaptor.setData(parseMovieFromJSON(indexes));
+        adaptor.setData(reverseList(parseMovieFromJSON(indexes)));
         adaptor.notifyDataSetChanged();
     }
 
@@ -119,5 +119,13 @@ public class FourthActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public ArrayList<Film> reverseList(ArrayList<Film> films) {
+        ArrayList<Film> mithian = new ArrayList<Film>();
+        for (int i = films.size() - 1; i >= 0; i--) {
+            mithian.add(films.get(i));
+        }
+        return mithian;
     }
 }
