@@ -4,23 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appli.FourthActivity;
 import com.example.appli.R;
 import com.example.appli.db.Film;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-// Adapter avec le strict minimum requis pour adapter les objets Acteur en item d'une RecyclerView.
-//TODO retrait de la description et gestion d'évènement cliquable qui afficherai un popup/une card.
 public class FilmAdapter extends RecyclerView.Adapter<FilmViewHolder> {
 
-    ArrayList<Film> films;
-    public FilmAdapter() {
+    private ArrayList<Film> films;
+    private Context context;
+    public FilmAdapter(FourthActivity activity) {
         films = new ArrayList<Film>();
+        context = activity;
     }
 
     public void setData(ArrayList<Film> f) {
@@ -42,6 +44,13 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmViewHolder> {
         Picasso.get().load("file:///android_asset/"+film.getImageURL()).into(holder.image);
         holder.title.setText(film.getName());
         holder.body.setText(film.getDescription());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, film.getDescription(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

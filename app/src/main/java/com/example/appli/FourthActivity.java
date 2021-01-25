@@ -46,7 +46,6 @@ public class FourthActivity extends AppCompatActivity {
             adaptItems();
         }
 
-
     }
 
     private Integer[] readIndexes() {
@@ -105,7 +104,7 @@ public class FourthActivity extends AppCompatActivity {
 
     public void adaptItems() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adaptor = new FilmAdapter();
+        adaptor = new FilmAdapter(this);
         recyclerView.setAdapter(adaptor);
         adaptor.setData(reverseList(parseMovieFromJSON(indexes)));
         adaptor.notifyDataSetChanged();

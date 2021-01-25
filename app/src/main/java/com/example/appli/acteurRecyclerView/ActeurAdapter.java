@@ -14,8 +14,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-// Adapter avec le strict minimum requis pour adapter les objets Acteur en item d'une RecyclerView.
-//TODO retrait de la description et gestion d'évènement cliquable qui afficherai un popup/une card.
 public class ActeurAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     ArrayList<Acteur> acteurs;
