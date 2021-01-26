@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FourthActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#e7e7e7"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="160dp" />
+    tools:context=".LoadingActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

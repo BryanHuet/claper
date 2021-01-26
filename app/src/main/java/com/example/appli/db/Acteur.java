@@ -2,31 +2,29 @@ package com.example.appli.db;
 
 public class Acteur {
 
+    private String id;
     private String nom;
-    private String prenom;
     private String description;
-    private String pathImage;
+    private String imageURL;
 
-    public Acteur(String nom, String prenom, String description, String pathImage) {
+    public Acteur(String id, String nom, String description, String imageURL) {
+        id = id;
         nom = nom;
-        prenom = prenom;
         description = description;
-        pathImage = pathImage;
+        imageURL = imageURL;
     }
+
+    public String getId() { return id; }
 
     public String getNom() {
         return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getPathImage() {
-        return pathImage;
+    public String getImageURL() {
+        return imageURL;
     }
 }
