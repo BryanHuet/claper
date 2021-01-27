@@ -32,6 +32,7 @@ import com.example.appli.db.Utils;
 public class LoadingActivity extends AppCompatActivity {
 
     private Film film;
+    public static int compteur=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +69,14 @@ public class LoadingActivity extends AppCompatActivity {
 
         List<Film> films = gson.fromJson(jsonFileString, listFilmType);
 
-        Random r = new Random();
-        int randIndex = r.nextInt(films.size());
+        //Random r = new Random();
+        //int randIndex = r.nextInt(films.size());
+        compteur = compteur >= films.size()-1 ? 0 : compteur+1;
+
         String s = readFromFile(this);
-        s += String.valueOf(randIndex) + " ";
+        s += String.valueOf(compteur) + " ";
         writeToFile(s,this);
-        return films.get(randIndex);
+        return films.get(compteur);
     }
 
     private void writeToFile(String data,Context context) {
